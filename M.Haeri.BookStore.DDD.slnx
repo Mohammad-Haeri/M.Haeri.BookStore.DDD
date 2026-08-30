@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="BookStore.Api/BookStore.Api.csproj" Id="7962a567-1c2a-4ea5-bb1a-3ce89daf9565" />
-  <Project Path="BookStore.Application/BookStore.Application.csproj" Id="b1ab8fff-71b0-4ae4-98eb-b03231f89005" />
-  <Project Path="BookStore.Domain/BookStore.Domain.csproj" Id="547edaf5-7383-47a9-970e-574ca05cee6d" />
-  <Project Path="BookStore.Infrastructure/BookStore.Infrastructure.csproj" Id="70fed1a4-8ef6-4c4d-8d07-4572f95ce236" />
+  <Project Path="BookStore.Api/M.Haeri.BookStore.Api.csproj" Id="7962a567-1c2a-4ea5-bb1a-3ce89daf9565" />
+  <Project Path="BookStore.Application/M.Haeri.BookStore.Application.csproj" Id="b1ab8fff-71b0-4ae4-98eb-b03231f89005" />
+  <Project Path="BookStore.Domain/M.Haeri.BookStore.Domain.csproj" Id="547edaf5-7383-47a9-970e-574ca05cee6d" />
+  <Project Path="BookStore.Infrastructure/M.Haeri.BookStore.Infrastructure.csproj" Id="70fed1a4-8ef6-4c4d-8d07-4572f95ce236" />
 </Solution>
