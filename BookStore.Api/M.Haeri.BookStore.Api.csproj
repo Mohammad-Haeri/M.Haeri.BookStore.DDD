@@ -17,4 +17,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore.Application\M.Haeri.BookStore.Application.csproj" />
+    <ProjectReference Include="..\BookStore.Infrastructure\M.Haeri.BookStore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

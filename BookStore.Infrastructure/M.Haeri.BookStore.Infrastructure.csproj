@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore.Application\M.Haeri.BookStore.Application.csproj" />
+    <ProjectReference Include="..\BookStore.Domain\M.Haeri.BookStore.Domain.csproj" />
+  </ItemGroup>
 
 </Project>
