@@ -7,24 +7,34 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
-# This stage is used to build the service project
+# Restore dependencies before copying application source.
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["BookStore.Api/BookStore.Api.csproj", "BookStore.Api/"]
-RUN dotnet restore "./BookStore.Api/BookStore.Api.csproj"
+
+COPY ["Directory.Build.props", "./"]
+COPY ["BookStore.Api/M.Haeri.BookStore.Api.csproj", "BookStore.Api/"]
+COPY ["BookStore.Application/M.Haeri.BookStore.Application.csproj", "BookStore.Application/"]
+COPY ["BookStore.Domain/M.Haeri.BookStore.Domain.csproj", "BookStore.Domain/"]
+COPY ["BookStore.Infrastructure/M.Haeri.BookStore.Infrastructure.csproj", "BookStore.Infrastructure/"]
+
+RUN dotnet restore "BookStore.Api/M.Haeri.BookStore.Api.csproj" \
+    -p:Configuration="$BUILD_CONFIGURATION" \
+    -p:UseAppHost=false
+
 COPY . .
-WORKDIR "/src/BookStore.Api"
-RUN dotnet build "./BookStore.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR /src/BookStore.Api
 
-# This stage is used to publish the service project to be copied to the final stage
+# Compile and publish without restoring dependencies again.
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BookStore.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "M.Haeri.BookStore.Api.csproj" \
+    -c "$BUILD_CONFIGURATION" \
+    -o /app/publish \
+    --no-restore \
+    -p:UseAppHost=false
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Run the published application without the SDK.
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BookStore.Api.dll"]
+ENTRYPOINT ["dotnet", "M.Haeri.BookStore.Api.dll"]
