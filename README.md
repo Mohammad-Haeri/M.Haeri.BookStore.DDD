@@ -6,25 +6,33 @@ I started this project to work through DDD in a manageable application and share
 
 ## 🚧 Current status
 
-The project is at the foundation stage.
+The solution setup is complete, and the first version's business rules are agreed.
 
-The four projects, their references, and the shared build settings are in place. The API host includes OpenAPI support, but there are no bookstore endpoints yet. Domain logic, persistence, authentication, and tests will come as the project develops.
+The API host runs with OpenAPI support. Bookstore endpoints, domain logic, persistence, authentication, and tests are still to come. The next step is turning those rules into a domain model.
 
-## Planned scope
+## 🎯 Planned scope
 
-The first version will focus on a small set of operations:
+Anyone will be able to browse the catalogue, find a book by ISBN, and view its details.
 
-- Browse the book catalogue and view book details.
-- Register books.
-- Change a book's price.
+Administrators will be able to:
+
+- Register books and correct their information.
+- Change prices.
 - Replenish stock.
-- Discontinue books.
+- Discontinue and reactivate books.
+- View both active and discontinued books.
 
-Book details will include the title, author, publisher, price, and availability.
+Management operations will require administrator authorization.
 
-Browsing will be available without signing in. Management operations are planned to require administrator authorization.
+Carts, orders, checkout, payments, customer accounts, and reviews are outside the first version.
 
-Carts, checkout, payments, customer accounts, and reviews are outside the initial scope.
+## 🧭 Domain decisions
+
+A book represents one sellable edition. Identical copies share a catalogue entry and a stock quantity. Each entry has a permanent `BookId` and a unique ISBN.
+
+Books can have multiple authors, and prices use USD. An active book stays visible when its stock reaches zero, marked as out of stock. Discontinuing a book hides it publicly while preserving its information and remaining stock.
+
+The [domain discovery notes](docs/domain-discovery.md) explain these decisions in detail: the shared terminology, use cases, business rules, and examples that will guide the tests. They also record the limits of the first version.
 
 ## Project structure
 
