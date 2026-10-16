@@ -34,6 +34,12 @@ Books can have multiple authors, and prices use USD. An active book stays visibl
 
 The [domain discovery notes](docs/domain-discovery.md) explain these decisions in detail: the shared terminology, use cases, business rules, and examples that will guide the tests. They also record the limits of the first version.
 
+## 🏗️ Architecture decisions
+
+The first version will run as a single ASP.NET Core API, using PostgreSQL and EF Core. Business rules will live in the Book aggregate, while commands and queries will have separate handlers and share the same database.
+
+The [architecture notes](docs/architecture-decisions.md) explain these choices, their trade-offs, and how concurrent updates will be handled.
+
 ## Project structure
 
 | Project | Responsibility |
